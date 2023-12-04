@@ -9285,13 +9285,11 @@ var observable = new _rxjs.Observable(function (subscriber) {
     subscriber.next('test');
     console.log('leak');
   }, 1000);
-  subscriber.complete();
   return function () {
     clearInterval(id);
   };
 });
-console.log('before');
-observable.subscribe({
+var subscription = observable.subscribe({
   next: function next(value) {
     console.log(value);
   },
@@ -9302,7 +9300,9 @@ observable.subscribe({
     console.error(err);
   }
 });
-console.log('after');
+setTimeout(function () {
+  subscription.unsubscribe();
+}, 4000);
 },{"rxjs":"../node_modules/rxjs/dist/esm5/index.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
