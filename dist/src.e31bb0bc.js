@@ -9280,8 +9280,16 @@ var _zipWith = require("./internal/operators/zipWith");
 "use strict";
 
 var _rxjs = require("rxjs");
-var observable = (0, _rxjs.fromEvent)(document, 'click');
-var subscription = observable.subscribe(console.log);
+var observable = (0, _rxjs.from)(fetch('https://jsonplaceholder.typicode.com/todos/1'));
+var subscription = observable.subscribe({
+  next: function next(value) {
+    console.log(value);
+  },
+  complete: function complete() {
+    console.log('completed');
+  }
+});
+console.log('hello');
 },{"rxjs":"../node_modules/rxjs/dist/esm5/index.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
