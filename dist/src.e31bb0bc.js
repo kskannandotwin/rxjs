@@ -10537,12 +10537,12 @@ var _rxjs = require("rxjs");
 var _operators = require("rxjs/operators");
 var _ajax = require("rxjs/ajax");
 var button = document.querySelector('#btn');
-var observable = (0, _rxjs.fromEvent)(button, 'click').pipe((0, _operators.map)(function () {
-  return _ajax.ajax.getJSON('https://jsonplaceholder.typicode.com/todos/1');
+var observable = (0, _rxjs.fromEvent)(button, 'click').pipe((0, _operators.mergeMap)(function () {
+  return (0, _rxjs.interval)(1000).pipe((0, _operators.tap)(console.log), (0, _operators.take)(5));
 }));
 var subscription = observable.subscribe({
   next: function next(value) {
-    value.subscribe(console.log);
+    console.log(value);
   },
   complete: function complete() {
     console.log('completed');
@@ -10574,7 +10574,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56381" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58022" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
