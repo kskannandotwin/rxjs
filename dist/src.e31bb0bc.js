@@ -10109,7 +10109,12 @@ var _zipWith = require("../internal/operators/zipWith");
 
 var _rxjs = require("rxjs");
 var _operators = require("rxjs/operators");
-var observable = (0, _rxjs.of)(1, 2, 3, 4, 5);
+var observable = (0, _rxjs.fromEvent)(document, 'keydown').pipe((0, _operators.map)(function (event) {
+  return event.code === 'Space' ? event.code : null;
+})
+// map((event) => event.code),
+// filter((code) => code === "Space")
+);
 var subscription = observable.subscribe({
   next: function next(value) {
     console.log(value);
@@ -10144,7 +10149,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52685" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53335" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

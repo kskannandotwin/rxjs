@@ -1,3 +1,8 @@
-node_modules
+# Compiled output
 /dist
-.cache
+
+# Node
+/node_modules
+
+# IDEs and editors
+.cache/
