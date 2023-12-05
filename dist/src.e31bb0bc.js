@@ -10109,7 +10109,11 @@ var _zipWith = require("../internal/operators/zipWith");
 
 var _rxjs = require("rxjs");
 var _operators = require("rxjs/operators");
-var observable = (0, _rxjs.interval)(500).pipe((0, _operators.take)(5), (0, _operators.scan)(function (acc, val) {
+var observable = (0, _rxjs.interval)(500).pipe((0, _operators.take)(5), (0, _operators.tap)({
+  next: function next(val) {
+    console.log(val);
+  }
+}), (0, _operators.reduce)(function (acc, val) {
   return acc + val;
 }, 0));
 var subscription = observable.subscribe({
