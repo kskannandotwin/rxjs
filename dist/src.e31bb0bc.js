@@ -10109,12 +10109,9 @@ var _zipWith = require("../internal/operators/zipWith");
 
 var _rxjs = require("rxjs");
 var _operators = require("rxjs/operators");
-var observable = (0, _rxjs.fromEvent)(document, 'keydown').pipe((0, _operators.map)(function (event) {
-  return event.code === 'Space' ? event.code : null;
-})
-// map((event) => event.code),
-// filter((code) => code === "Space")
-);
+var observable = (0, _rxjs.of)(1, 2, 3, 4, 5).pipe((0, _operators.reduce)(function (acc, val) {
+  return acc + val;
+}, 0));
 var subscription = observable.subscribe({
   next: function next(value) {
     console.log(value);

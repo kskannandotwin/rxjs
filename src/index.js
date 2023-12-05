@@ -1,12 +1,11 @@
-import { of, from, fromEvent } from "rxjs";
-import { map, filter } from "rxjs/operators";
+import { of } from "rxjs";
+import { reduce } from "rxjs/operators";
 
-const observable = fromEvent(document, 'keydown').pipe(
-    map((event) => {
-        return event.code === 'Space' ? event.code : null;
-    })
-    // map((event) => event.code),
-    // filter((code) => code === "Space")
+const observable = of(1, 2, 3, 4, 5).pipe(
+    reduce(
+        (acc, val) => acc + val,
+        0
+    )
 );
 
 const subscription = observable.subscribe({
